@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Todo List</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <!-- Content here -->
+            <div class="jumbotron">
+                <h1 class="display-4">TaskTracker</h1>
+                <p class="lead">Get your stuff done.</p>
+            </div>
+            <button type="button" id="btnAddTask" class="btn btn-success">Add Task</button>
+            <button type="button" id="btnAddCategory" class="btn btn-secondary">Add Category</button>
+            <!-- data-toggle="modal" data-target="#addTaskModal" -->
+            <button type="button" id='btnEditTask' class="btn btn-primary" disabled>Edit Task</button>
+            <button type="button" id='btnDeleteTask' class="btn btn-danger" disabled>Delete Task</button> 
+            <br><br>
+            <form>
+                <div class="form-group">
+                    <label for="inputCategoryMain">Category</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inputCategoryMain">
+                    </select>
+                </div>
+            </form>
+        
+            <div class="list-group" id="listSpace">
+            </div>
+
+        <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id='addTaskForm' class='was-validated'>
+                            <div class="form-group">
+                                <label for="inputSubject">Task</label>
+                                <input type="text" class="form-control" id="inputSubject"
+                                    placeholder="Task Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCategoryAddEdit">Category</label>
+                                <select class="custom-select custom-select-sm" id="inputCategoryAddEdit">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPriority">Priority</label>
+                                <select class="custom-select custom-select-sm" id="inputPriority">
+                                    <option value='Low'>Low</option>
+                                    <option value='Medium'>Medium</option>
+                                    <option value='High'>High</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputStatus">Status</label>
+                                <select class="custom-select custom-select-sm" id="inputStatus">
+                                    <option value='New'>New</option>
+                                    <option value='In Progress'>In Progress</option>
+                                    <option value='Completed'>Completed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDueDate">Due Date</label>
+                                <input type="date" class="form-control" id="inputDueDate" placeholder="Due Date" required>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id='btnCloseAddTaskModal' class="btn btn-secondary">Close</button>
+                        <!-- <button type="button" id="btnSaveTask" class="btn btn-primary">Save changes</button> -->
+                        <input type='submit' id='btnSaveTask' value='Add Task' class='btn btn-primary'>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="inputCategory">Category</label>
+                                <input type="text" class="form-control" id="inputCategory" placeholder="Category">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id='btnCloseCategoryModal' class="btn btn-secondary">Close</button>
+                        <button type="button" id="btnSaveCategory" class="btn btn-primary">Save Category</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
