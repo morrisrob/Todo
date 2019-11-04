@@ -4,4 +4,4 @@ Live: https://morrisrob.github.io/Todo/dist/index.html
 
 To Do List CRUD application built using Javascript.  Data does not persist.  The application offers the ability to add categories, and to do list items, as well as Edit entries after they are saved.
 
-<img src="calculator.png" height="400">
+<img src="todo.png" height="400">
